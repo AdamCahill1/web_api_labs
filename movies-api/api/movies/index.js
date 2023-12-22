@@ -38,7 +38,9 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }));
 
 router.get('/tmdb/upcoming', asyncHandler(async (req, res) => {
-    const upcomingMovies = await getUpcomingMovies();
+    let { page = 1} = req.query;
+    const upcomingMovies = await getUpcomingMovies(page);
+    
     res.status(200).json(upcomingMovies);
 }));
 
